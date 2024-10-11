@@ -5,26 +5,25 @@ import ThemeContext from './contexts';
 
 const ThemeSwitcher = () => {
   // BEGIN (write your solution here)
-
-  // END
-
+  const { themes, theme, setTheme } = React.useContext(ThemeContext)
   return (
     <ButtonGroup className="mt-2">
-      {themes.map((curTheme) => (
+      {themes.map((_theme) => (
         <ToggleButton
-          key={curTheme.id}
-          id={`radio-${curTheme.id}`}
+          key={_theme.id}
+          id={`${_theme.id}`}
           type="radio"
           name="radio"
-          value={curTheme.name}
-          checked={curTheme.name === theme.name}
-          onChange={() => setTheme(curTheme)}
+          value={_theme.name}
+          checked={_theme.id === theme.id}
+          onClick={() => setTheme(_theme)}
         >
-          {curTheme.name}
+          {_theme.name}
         </ToggleButton>
       ))}
     </ButtonGroup>
   );
+  // END
 };
 
 export default ThemeSwitcher;

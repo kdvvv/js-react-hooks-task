@@ -5,6 +5,7 @@ import Home from './Home.jsx';
 import Profile from './Profile.jsx';
 import ThemeSwitcher from './ThemeSwitcher.jsx';
 import ThemeContext from './contexts';
+import {ThemeConsumer} from "react-bootstrap/ThemeProvider";
 
 const themes = [
   {
@@ -24,15 +25,12 @@ const themes = [
   },
 ];
 
-const ThemeProvider = ({ children }) => {
-  // BEGIN (write your solution here)
+const App = () => {
 
-  // END
-};
+  let [theme, setTheme] = React.useState(themes[0]);
 
-const App = () => (
-  <ThemeProvider>
-    <Tabs className="mb-3">
+  return <ThemeContext.Provider value={{themes, theme, setTheme}}>
+    <Tabs>
       <Tab eventKey="home" title="Home">
         <Home />
       </Tab>
@@ -41,7 +39,7 @@ const App = () => (
       </Tab>
     </Tabs>
     <ThemeSwitcher />
-  </ThemeProvider>
-);
+  </ThemeContext.Provider>
+};
 
 export default App;
